@@ -3,7 +3,7 @@ pipeline {
     environment {
         gitRepo = 'https://github.com/chefdigital/cicd-demo-react.git'
         gitCredential = 'github-chefdigital'
-        dockerHubRegistry = 'chefdigitaldemo/cicd-demo-react'
+        dockerHubRegistry = 'chefdigital/cicd-demo-react'
         dockerHubCredential = 'dockerhub-chefdigitaldemo'
         app = ''
     }
