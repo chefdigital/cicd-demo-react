@@ -25,9 +25,13 @@ pipeline {
         }
 
         stage('Push docker image to registry') {
-            docker.withRegistry('', dockerHubCredential) {
-                app.push("$BUILD_NUMBER")
-                app.push("latest")
+            steps {
+                script {
+                    docker.withRegistry('', dockerHubCredential) {
+                        app.push("$BUILD_NUMBER")
+                        app.push("latest")
+                    }
+                }
             }
         }
     }
