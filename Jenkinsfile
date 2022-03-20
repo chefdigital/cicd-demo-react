@@ -11,9 +11,9 @@ node {
     }
 
     stage('Test docker image') {
-        app.inside [
+        app.inside {
             sh 'echo "Tests passed"'
-        ]
+        }
     }
 
     stage('Push docker image to registry') {
