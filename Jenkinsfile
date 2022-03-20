@@ -7,24 +7,28 @@ pipeline {
         app = ''
     }
 
-    stage('Clone git repository') {
-        steps {
-            git([url: gitRepo, branch: 'main'])
-        }
-    }
+    agent any
 
-    stage('Build docker image') {
-        steps {
-            script {
-                app = docker.build(dockerHubRegistry)
+    stages {
+        stage('Clone git repository') {
+            steps {
+                git([url: gitRepo, branch: 'main'])
             }
         }
-    }
 
-    stage('Push docker image to registry') {
-        docker.withRegistry('', dockerHubCredential) {
-            app.push("$BUILD_NUMBER")
-            app.push("latest")
+        stage('Build docker image') {
+            steps {
+                script {
+                    app = docker.build(dockerHubRegistry)
+                }
+            }
+        }
+
+        stage('Push docker image to registry') {
+            docker.withRegistry('', dockerHubCredential) {
+                app.push("$BUILD_NUMBER")
+                app.push("latest")
+            }
         }
     }
     
