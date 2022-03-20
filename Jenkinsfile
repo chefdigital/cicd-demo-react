@@ -1,23 +1,23 @@
 pipeline {
 
     environment {
+        gitRepo = 'https://github.com/chefdigitaldemo/cicd-demo-react.git'
         dockerHubRegistry = 'chefdigitaldemo/cicd-demo-react'
         dockerHubCredential = 'dockerhub'
+        app = ''
     }
 
-    def app
-
     stage('Clone git repository') {
-        checkout scm
+        steps {
+            git([url: gitRepo, branch: 'main'])
+        }
     }
 
     stage('Build docker image') {
-        app = docker.build(dockerHubRegistry)
-    }
-
-    stage('Test docker image') {
-        app.inside {
-            sh 'echo "Tests passed"'
+        steps {
+            script {
+                app = docker.build(dockerHubRegistry)
+            }
         }
     }
 
