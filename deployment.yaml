@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: cicd-demo-react
-        image: chefdigitaldemo/cicd-demo-react:latest
+        image: chefdigital/cicd-demo-react:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
