@@ -1,4 +1,9 @@
-node {
+pipeline {
+
+    environment {
+        dockerHubRegistry = 'chefdigitaldemo/cicd-demo-react'
+        dockerHubCredential = 'dockerhub'
+    }
 
     def app
 
@@ -7,7 +12,7 @@ node {
     }
 
     stage('Build docker image') {
-        app = docker.build('chefdigitaldemo/cicd-demo-react')
+        app = docker.build(dockerHubRegistry)
     }
 
     stage('Test docker image') {
@@ -17,9 +22,9 @@ node {
     }
 
     stage('Push docker image to registry') {
-        docker.withRegistry('https://registry.hub.docker.com', 'git') {
-            app.push("${env.BUILD_NUMBER}")
-            APP.push("latest")
+        docker.withRegistry('', dockerHubCredential) {
+            app.push("$BUILD_NUMBER")
+            app.push("latest")
         }
     }
     
