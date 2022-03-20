@@ -2,8 +2,9 @@ pipeline {
 
     environment {
         gitRepo = 'https://github.com/chefdigitaldemo/cicd-demo-react.git'
+        gitCredential = 'github-chefdigital'
         dockerHubRegistry = 'chefdigitaldemo/cicd-demo-react'
-        dockerHubCredential = 'dockerhub'
+        dockerHubCredential = 'dockerhub-chefdigitaldemo'
         app = ''
     }
 
@@ -12,7 +13,7 @@ pipeline {
     stages {
         stage('Clone git repository') {
             steps {
-                git([url: gitRepo, branch: 'main'])
+                git([url: gitRepo, branch: 'main', credentialsId: gitCredential])
             }
         }
 
