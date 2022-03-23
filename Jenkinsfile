@@ -4,7 +4,7 @@ pipeline {
         gitRepo = 'https://github.com/chefdigital/cicd-demo-react.git'
         gitCredential = 'github-chefdigital'
         dockerHubRegistry = 'chefdigital/cicd-demo-react'
-        dockerHubCredential = 'dockerhub-chefdigitaldemo'
+        dockerHubCredential = 'dockerhub-chefdigital'
         app = ''
     }
 
